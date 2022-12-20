@@ -1,0 +1,165 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "image2": "./img/apple.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Manzana",
+      "relation": 1
+    },
+    {
+      "id": 2,
+      "image2": "./img/apple.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Manzana",
+      "relation": 1
+    },
+    {
+      "id": 3,
+      "image2": "./img/bananas.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Platano",
+      "relation": 2
+    },
+    {
+      "id": 4,
+      "image2": "./img/bananas.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Platano",
+      "relation": 2
+    },
+    {
+      "id": 5,
+      "image2": "./img/cherries.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Cherries",
+      "relation": 3
+    },
+    {
+      "id": 6,
+      "image2": "./img/cherries.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Cherries",
+      "relation": 3
+    },
+    {
+      "id": 7,
+      "image2": "./img/grapes.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Grapes",
+      "relation": 4
+    },
+    {
+      "id": 8,
+      "image2": "./img/grapes.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Grapes",
+      "relation": 4
+    },
+    {
+      "id": 9,
+      "image2": "./img/orange-juice.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Orange",
+      "relation": 5
+    },
+    {
+      "id": 10,
+      "image2": "./img/orange-juice.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Orange",
+      "relation": 5
+    },
+    {
+      "id": 11,
+      "image2": "./img/papaya.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Papaya",
+      "relation": 6
+    },
+    {
+      "id": 12,
+      "image2": "./img/papaya.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Papaya",
+      "relation": 6
+    },
+    {
+      "id": 13,
+      "image2": "./img/pineapple.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Pineapple",
+      "relation": 7
+    },
+    {
+      "id": 14,
+      "image2": "./img/pineapple.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Pineapple",
+      "relation": 7
+    },
+    {
+      "id": 15,
+      "image2": "./img/strawberry.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Strawberry",
+      "relation": 8
+    },
+    {
+      "id": 16,
+      "image2": "./img/strawberry.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Strawberry",
+      "relation": 8
+    },
+    {
+      "id": 17,
+      "image2": "./img/tomato.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Tomato",
+      "relation": 9
+    },
+    {
+      "id": 18,
+      "image2": "./img/tomato.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Tomato",
+      "relation": 9
+    },
+    {
+      "id": 19,
+      "image2": "./img/avocado.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Aguacate",
+      "relation": 10
+    }
+    ,
+    {
+      "id": 20,
+      "image2": "./img/avocado.png",
+      "image1": "./img/roma.jpg",
+      "status": true,
+      "title": "Aguacate",
+      "relation": 10
+    }
+  ]
+}
