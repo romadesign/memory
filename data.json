@@ -57,27 +57,27 @@
     },
     {
       "id": 12,
-      "name": "apple", 
+      "name": "apple",
       "img": "img/apple.png"
     },
     {
       "id": 13,
-      "name": "pineapple", 
+      "name": "pineapple",
       "img": "img/pineapple.png"
     },
     {
       "id": 14,
-      "name": "pineapple", 
+      "name": "pineapple",
       "img": "img/pineapple.png"
     },
     {
       "id": 15,
-      "name": "strawberry", 
+      "name": "strawberry",
       "img": "img/strawberry.png"
     },
     {
       "id": 16,
-      "name": "strawberry", 
+      "name": "strawberry",
       "img": "img/strawberry.png"
     }
   ]
