@@ -2,6 +2,9 @@ const selected_grid_div = document.getElementById('grid')
 const time = document.getElementById('time')
 const logo = 'img/roma.jpg'
 const attemp = document.getElementById('attempts')
+const content_div = document.querySelector('.content-time-general')
+const content_div_general = document.querySelector('.content-general')
+
 let new_array = []
 let attemps = 0
 let choices = []
@@ -9,18 +12,15 @@ let save = []
 let data = ''
 let statusConente = false
 
-//time
-let content_div = document.querySelector('.content-time-general')
-let content_div_general = document.querySelector('.content-general')
 let h5 = document.getElementsByTagName('h5')[0]
-let start = document.getElementById('strt')
-let stop = document.getElementById('stp')
+let start = document.getElementById('start')
+let stop = document.getElementById('stop')
 let sec = 0
 let min = 0
 let hrs = 0
 let t
 
-function tick () {
+function tick() {
   sec++
   if (sec >= 60) {
     sec = 0
@@ -32,7 +32,7 @@ function tick () {
   }
 }
 
-function add () {
+function add() {
   tick()
   h5.textContent =
     (hrs > 9 ? hrs : '0' + hrs) +
@@ -43,11 +43,10 @@ function add () {
   timer()
 }
 
-function timer () {
+function timer() {
   showButtonStop()
   hiddeButtonStart()
   if (statusConente != true) {
-    console.log(statusConente)
     selected_grid_div.getAttribute('class')
     selected_grid_div.classList.remove('show-grip')
   }
@@ -60,20 +59,14 @@ stop.onclick = function () {
   hiddeButtonStop()
 
   if (statusConente != true) {
-    console.log(statusConente)
     selected_grid_div.getAttribute('class')
     selected_grid_div.classList.add('show-grip')
-
-    //hide game
-    content_div_general.getAttribute('id')
-    content_div_general.classList.add('hola')
   }
 
   clearTimeout(t)
 }
 
 const getData = () =>
-  //hide button start
   start.getAttribute('class')
 start.classList.add('start_new')
 
@@ -109,7 +102,6 @@ getData()
 
 const onClick_img = (img, i) => {
   const capture_img_all = document.querySelectorAll('img')
-  console.log(capture_img_all)
   img.setAttribute('src', data[new_array[i]].img)
   img.setAttribute('id', data[new_array[i]].id)
   choices.push(img.src)
@@ -134,13 +126,14 @@ const onClick_img = (img, i) => {
 
   if (save.length === 16) {
     const win = document.createElement('h2')
-    win.textContent = 'You win!'
-    document.body.appendChild(win)
+    win.textContent = 'Congratulations you won!'
+    content_div_general.appendChild(win).classList.add('txt-wine')
     const new_game_button = document.createElement('button')
     new_game_button.textContent = 'Jugar nuevamente'
-    document.body.appendChild(new_game_button)
+    content_div_general.appendChild(new_game_button).classList.add('button-restart-game')
+
     new_game_button.addEventListener('click', _ => {
-          location.reload();
+      location.reload();
     })
     youWin()
   }
@@ -151,34 +144,33 @@ const sum_attemp = () => {
   attemp.textContent = attemps
 }
 
-function youWin () {
+function youWin() {
   clearTimeout(t)
   content_div.getAttribute('class')
   content_div.classList.add('time')
 
   //hide game
-  console.log(statusConente)
   selected_grid_div.getAttribute('class')
   selected_grid_div.classList.add('show-grip')
   hiddeButtonStop()
 }
 
-function hiddeButtonStop () {
+function hiddeButtonStop() {
   stop.getAttribute('class')
   stop.classList.add('stop_new')
 }
 
-function showButtonStop () {
+function showButtonStop() {
   stop.getAttribute('class')
   stop.classList.remove('stop_new')
 }
 
-function hiddeButtonStart () {
+function hiddeButtonStart() {
   start.getAttribute('class')
   start.classList.add('start_new')
 }
 
-function showButtonStart () {
+function showButtonStart() {
   start.getAttribute('class')
   start.classList.remove('start_new')
 }
