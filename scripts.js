@@ -1,10 +1,8 @@
 const selected_grid_div = document.getElementById('grid')
 const time = document.getElementById('time')
 const logo = 'img/roma.jpg'
-const selected_score_span = document.getElementById('score')
 const attemp = document.getElementById('attempts')
 let new_array = []
-let score = 0
 let attemps = 0
 let choices = []
 let save = []
@@ -66,6 +64,7 @@ stop.onclick = function () {
     selected_grid_div.getAttribute('class')
     selected_grid_div.classList.add('show-grip')
 
+    //hide game
     content_div_general.getAttribute('id')
     content_div_general.classList.add('hola')
   }
@@ -130,10 +129,9 @@ const onClick_img = (img, i) => {
     sum_attemp()
   } else if (choices.length === 2 && choices[0] === choices[1]) {
     choices = []
-    score++
-    selected_score_span.textContent = score
     sum_attemp()
   }
+
   if (save.length === 16) {
     const win = document.createElement('h2')
     win.textContent = 'You win!'
@@ -141,32 +139,16 @@ const onClick_img = (img, i) => {
     const new_game_button = document.createElement('button')
     new_game_button.textContent = 'Jugar nuevamente'
     document.body.appendChild(new_game_button)
-    new_game_button.addEventListener('click', () =>
-      newGame(new_game_button, win)
-    )
+    new_game_button.addEventListener('click', _ => {
+          location.reload();
+    })
     youWin()
   }
 }
-console.log(content_div)
 
 const sum_attemp = () => {
   attemps++
   attemp.textContent = attemps
-}
-
-const newGame = (new_game_button, win) => {
-  selected_grid_div.innerHTML = ''
-  win.remove()
-  img_filter = []
-  save = []
-  choices = []
-  new_array = []
-  score = 0
-  attemps = 0
-  attemp.textContent = attemps
-  selected_score_span.textContent = score
-  getData()
-  new_game_button.remove()
 }
 
 function youWin () {
@@ -174,6 +156,10 @@ function youWin () {
   content_div.getAttribute('class')
   content_div.classList.add('time')
 
+  //hide game
+  console.log(statusConente)
+  selected_grid_div.getAttribute('class')
+  selected_grid_div.classList.add('show-grip')
   hiddeButtonStop()
 }
 

@@ -17,14 +17,10 @@
 }
 
 .time {
-	position: absolute;
-	background: rgba(87, 87, 87, 0.527);
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	top: 0;
-	height: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .stopBtn {
