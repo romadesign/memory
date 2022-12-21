@@ -1,9 +1,11 @@
 const selected_grid_div = document.getElementById('grid')
 const time = document.getElementById('time')
 const logo = 'img/logo.jpg'
+const happyImg = 'img/happy.gif'
 const attemp = document.getElementById('attempts')
 const content_div = document.querySelector('.content-time-general')
 const content_div_general = document.querySelector('.content-general')
+const buttonRestar = document.getElementById('buttonRestar')
 
 let new_array = []
 let attemps = 0
@@ -46,6 +48,7 @@ function add() {
 function timer() {
   showButtonStop()
   hiddeButtonStart()
+  buttonRestar.style.display = "none"
   if (statusConente != true) {
     selected_grid_div.getAttribute('class')
     selected_grid_div.classList.remove('show-grip')
@@ -125,11 +128,12 @@ const onClick_img = (img, i) => {
   }
 
   if (save.length === 16) {
-    const win = document.createElement('h2')
-    win.textContent = 'Congratulations you won!'
-    content_div_general.appendChild(win).classList.add('txt-wine')
+    let imgHappy = document.createElement('img')
+    imgHappy.setAttribute('src', happyImg)
+    content_div_general.appendChild(imgHappy)
+
     const new_game_button = document.createElement('button')
-    new_game_button.textContent = 'Jugar nuevamente'
+    new_game_button.textContent = 'Play again'
     content_div_general.appendChild(new_game_button).classList.add('button-restart-game')
 
     new_game_button.addEventListener('click', _ => {
@@ -148,7 +152,6 @@ function youWin() {
   clearTimeout(t)
   content_div.getAttribute('class')
   content_div.classList.add('time')
-
   //hide game
   selected_grid_div.getAttribute('class')
   selected_grid_div.classList.add('show-grip')
@@ -163,6 +166,7 @@ function hiddeButtonStop() {
 function showButtonStop() {
   stop.getAttribute('class')
   stop.classList.remove('stop_new')
+
 }
 
 function hiddeButtonStart() {
@@ -173,4 +177,9 @@ function hiddeButtonStart() {
 function showButtonStart() {
   start.getAttribute('class')
   start.classList.remove('start_new')
+  buttonRestar.style.display = "block"
+  buttonRestar.addEventListener('click', _ => {
+    location.reload();
+  })
+
 }
