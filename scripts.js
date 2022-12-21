@@ -1,124 +1,99 @@
-
-const capture_content_div = document.getElementById('content')
-const capture_img1 = document.getElementsByClassName('img-1')
-const capture_img2 = document.getElementsByClassName('img-2')
-
-
-let addData = []
-let addDatacorrect = []
+const selected_grid_div = document.getElementById('grid');
+const logo = "img/roma.jpg";
+const selected_score_span = document.getElementById('score');
+const attemp = document.getElementById('attempts');
+let new_array = [];
+let score = 0;
+let attemps = 0;
+let choices = [];
+let save = [];
+let data = ""
 
 const getData = () =>
   fetch('./data.json')
     .then(response => response.json())
     .then(json => {
-      return json
-    })
-
-getData()
-  .then(res => {
-    const data = res.items
-    const random_data = data.sort(function () {
-      return Math.random() - 0.5
-    })
-    random_data.filter(item => {
-      capture_content_div.innerHTML += `
-        <img onclick='onClickImgOne(${item.relation}, ${item.id})' class="img-1" id='${item.id}'  src="${item.image1}"/>
-        <img class="img-2 d-none " id='${item.id}'  src="${item.image2}"/>
-        `
-    })
-  })
-  .catch(error => {
-    console.log(error, 'entro') // "oh, no!"
-  })
-
-function onClickImgOne(relation, id) {
-  console.log(addDatacorrect)
-
-  for (let index = 0; index < capture_img2.length; index++) {
-    const element2 = capture_img2[index]
-    var element_atributo_id_img2 = element2.getAttribute('id')
-
-    if (id == element_atributo_id_img2) {
-      element2.classList.remove('d-none')
-      for (let index = 0; index < capture_img1.length; index++) {
-        const element1 = capture_img1[index];
-        var element_atributo_id_img1 = element1.getAttribute('id')
-
-        if (id == element_atributo_id_img1) {
-          element1.classList.add('d-none')
-          addDataNewArray(relation)
+      data = json.data
+      console.log(json.data)
+      for (let i = 0; i < 16; i++) {
+        let img = document.createElement("img");
+        img.setAttribute("src", logo);
+        selected_grid_div.appendChild(img);
+        img.addEventListener("click", () => {
+          onClick_img(img, i)
+        });
+      }
+      while (new_array.length < data.length) {
+        let random_number = Math.floor(Math.random() * data.length);
+        let exists = false;
+        for (var i = 0; i < new_array.length; i++) {
+          if (new_array[i] == random_number) {
+            exists = true;
+            break;
+          }
+        }
+        if (!exists) {
+          new_array[new_array.length] = random_number;
         }
       }
-    }
-  }
-}
+    })
 
 
-function addDataNewArray(relation) {
-  addData.push(relation)
-  if (addData.length == 2) {
-    if (addData[0] == addData[1]) {
-      addDatacorrect.push(relation)
-      showDataCorrect(addDatacorrect)
-      addData = []
-      console.log(addData)
-    } else {
-      console.log('no es igual')
-      addData = []
-      for (let index = 0; index < capture_img2.length; index++) {
-        const element2 = capture_img2[index];
-        element2.getAttribute('id')
-        element2.classList.add('d-none')
+getData();
 
-        for (let index = 0; index < capture_img1.length; index++) {
-          const element1 = capture_img1[index];
-          element1.getAttribute('id')
-          element1.classList.remove('d-none')
-        }
+const onClick_img = (img, i) => {
+  const capture_img_all = document.querySelectorAll("img");
+  console.log(capture_img_all)
+  img.setAttribute("src", data[new_array[i]].img);
+  img.setAttribute("id", data[new_array[i]].id);
+  choices.push(img.src);
+  save.push(img.id);
+
+  if (choices.length === 2 && choices[0] !== choices[1]) {
+    choices = [];
+    save.pop();
+    save.pop();
+    setTimeout(() => {
+      const new_img_arr = Array.from(capture_img_all);
+      const img_filter = new_img_arr.filter((img) => !save.includes(img.id));
+      for (let i = 0; i < img_filter.length; i++) {
+        img_filter[i].setAttribute("src", logo);
       }
-    }
-  } else {
-    console.log('no')
+    }, 700);
+    sum_attemp();
+  } else if (choices.length === 2 && choices[0] === choices[1]) {
+    choices = [];
+    score++;
+    selected_score_span.textContent = score;
+    sum_attemp();
   }
-}
-
-function showDataCorrect(data) {
-  let noRepeats = [...new Set(data)];
-  console.log("Sin repetidos es:", noRepeats);
-  for (let index = 0; index < noRepeats.length; index++) {
-    const elementNotRepeat = noRepeats[index];
-
-    console.log(elementNotRepeat, 'qauii')
-
-
-    for (let index = 0; index < capture_img1.length; index++) {
-      const element1 = capture_img1[index];
-      console.log(element1, '0asd')
-
-    }
+  if (save.length === 16) {
+    const win = document.createElement("h2");
+    win.textContent = "You win!";
+    document.body.appendChild(win);
+    const new_game_button = document.createElement("button");
+    new_game_button.textContent = "Jugar nuevamente";
+    document.body.appendChild(new_game_button);
+    new_game_button.addEventListener("click", () => newGame(new_game_button, win));
   }
-}
+};
 
+const sum_attemp = () => {
+  attemps++;
+  attemp.textContent = attemps;
+};
 
-// function onClickImgTwo (relation, id) {
-//   for (let index = 0; index < capture_img2.length; index++) {
-//     const element2 = capture_img2[index]
-//       var element_atributo_id_img2 = element2.getAttribute('id')
-
-//       if (id == element_atributo_id_img2) {
-//         var element_atributo_class = element2.classList.add('d-none')
-
-//         for (let index = 0; index < capture_img1.length; index++) {
-//           const element = capture_img1[index];
-//           var element_atributo_id_img1 = element.getAttribute('id')
-
-//           if (id == element_atributo_id_img1){
-//             var element_atributo_class = element.classList.remove('d-none')
-//           }
-//         }
-//       }
-
-//   }
-// }
-
-
+const newGame = (new_game_button, win) => {
+  selected_grid_div.innerHTML = "";
+  win.remove();
+  img_filter = [];
+  save = [];
+  choices = [];
+  new_array = [];
+  score = 0;
+  attemps = 0;
+  attemp.textContent = attemps;
+  selected_score_span.textContent = score;
+  getData();
+  new_game_button.remove();
+};

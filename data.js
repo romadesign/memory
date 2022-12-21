@@ -1,141 +1,67 @@
-const countries = [
+let data = [
   {
     id: 1,
-    code: 'AL',
-    name: 'Alemán',
+    name: "earth",
+    img: "img/bananas.png",
   },
   {
     id: 2,
-    code: 'AB',
-    name: 'Árabe',
+    name: "jupiter",
+    img: "img/papaya.png",
   },
   {
     id: 3,
-    code: 'BL',
-    name: 'Búlgaro',
+    name: "mars",
+    img: "img/cherries.png",
   },
   {
     id: 4,
-    code: 'CC',
-    name: 'Cantonés',
+    name: "mercury",
+    img: "img/orange-juice.png",
   },
   {
     id: 5,
-    code: 'CM',
-    name: 'Mandarín',
+    name: "saturn",
+    img: "img/grapes.png",
   },
   {
     id: 6,
-    code: 'AF',
-    name: 'Afganistán',
+    name: "uranus",
+    img: "img/apple.png",
   },
   {
     id: 7,
-    code: 'C',
-    name: 'Coreano',
+    name: "earth",
+    img: "img/bananas.png",
   },
   {
     id: 8,
-    code: 'DA',
-    name: 'Danés',
+    name: "jupiter",
+    img: "img/papaya.png",
   },
   {
     id: 9,
-    code: 'ES',
-    name: 'España',
+    name: "mars",
+    img: "img/cherries.png",
   },
   {
     id: 10,
-    code: 'FN',
-    name: 'Finés',
+    name: "mercury",
+    img: "img/orange-juice.png",
   },
   {
     id: 11,
-    code: 'FL',
-    name: 'Flamenco',
+    name: "saturn",
+    img: "img/grapes.png",
   },
   {
     id: 12,
-    code: 'FC',
-    name: 'Francés',
+    name: "uranus", 
+    img: "img/apple.png",
   },
-  {
-    id: 13,
-    code: 'HN',
-    name: 'Hindi',
-  },
-  {
-    id: 14,
-    code: 'ID',
-    name: 'Indonesio',
-  },
-  {
-    id: 15,
-    code: 'IN',
-    name: 'Ingles',
-  },
-  {
-    id: 16,
-    code: 'IT',
-    name: 'Italiano',
-  },
-  {
-    id: 17,
-    code: 'JP',
-    name: 'Japonés',
-  },
-  {
-    id: 18,
-    code: 'NL',
-    name: 'Neerlandés',
-  },
-  {
-    id: 19,
-    code: 'NG',
-    name: 'Noruego',
-  },
-  {
-    id: 20,
-    code: 'PC',
-    name: 'Polaco',
-  },
-  {
-    id: 21,
-    code: 'PT',
-    name: 'Portugués',
-  },
-  {
-    id: 22,
-    code: 'RO',
-    name: 'Rumano',
-  },
-  {
-    id: 23,
-    code: 'RU',
-    name: 'Ruso',
-  },
-  {
-    id: 24,
-    code: 'SC',
-    name: 'Sueco',
-  },
-  {
-    id: 25,
-    code: 'TG',
-    name: 'Tagalo',
-  },
-  {
-    id: 26,
-    code: 'TD',
-    name: 'Tailandés',
-  },
-  {
-    id: 27,
-    code: 'TC',
-    name: 'Turco',
-  },
-]
+];
 
 module.exports = {
-  countries,
+  data,
 }
+

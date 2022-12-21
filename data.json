@@ -1,165 +1,84 @@
 {
-  "items": [
+  "data": [
     {
       "id": 1,
-      "image2": "./img/apple.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Manzana",
-      "relation": 1
+      "name": "bananas",
+      "img": "img/bananas.png"
     },
     {
       "id": 2,
-      "image2": "./img/apple.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Manzana",
-      "relation": 1
+      "name": "papaya",
+      "img": "img/papaya.png"
     },
     {
       "id": 3,
-      "image2": "./img/bananas.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Platano",
-      "relation": 2
+      "name": "cherries",
+      "img": "img/cherries.png"
     },
     {
       "id": 4,
-      "image2": "./img/bananas.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Platano",
-      "relation": 2
+      "name": "orange",
+      "img": "img/orange-juice.png"
     },
     {
       "id": 5,
-      "image2": "./img/cherries.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Cherries",
-      "relation": 3
+      "name": "grapes",
+      "img": "img/grapes.png"
     },
     {
       "id": 6,
-      "image2": "./img/cherries.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Cherries",
-      "relation": 3
+      "name": "apple",
+      "img": "img/apple.png"
     },
     {
       "id": 7,
-      "image2": "./img/grapes.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Grapes",
-      "relation": 4
+      "name": "bananas",
+      "img": "img/bananas.png"
     },
     {
       "id": 8,
-      "image2": "./img/grapes.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Grapes",
-      "relation": 4
+      "name": "papaya",
+      "img": "img/papaya.png"
     },
     {
       "id": 9,
-      "image2": "./img/orange-juice.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Orange",
-      "relation": 5
+      "name": "cherries",
+      "img": "img/cherries.png"
     },
     {
       "id": 10,
-      "image2": "./img/orange-juice.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Orange",
-      "relation": 5
+      "name": "orange",
+      "img": "img/orange-juice.png"
     },
     {
       "id": 11,
-      "image2": "./img/papaya.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Papaya",
-      "relation": 6
+      "name": "grapes",
+      "img": "img/grapes.png"
     },
     {
       "id": 12,
-      "image2": "./img/papaya.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Papaya",
-      "relation": 6
+      "name": "apple", 
+      "img": "img/apple.png"
     },
     {
       "id": 13,
-      "image2": "./img/pineapple.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Pineapple",
-      "relation": 7
+      "name": "pineapple", 
+      "img": "img/pineapple.png"
     },
     {
       "id": 14,
-      "image2": "./img/pineapple.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Pineapple",
-      "relation": 7
+      "name": "pineapple", 
+      "img": "img/pineapple.png"
     },
     {
       "id": 15,
-      "image2": "./img/strawberry.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Strawberry",
-      "relation": 8
+      "name": "strawberry", 
+      "img": "img/strawberry.png"
     },
     {
       "id": 16,
-      "image2": "./img/strawberry.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Strawberry",
-      "relation": 8
-    },
-    {
-      "id": 17,
-      "image2": "./img/tomato.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Tomato",
-      "relation": 9
-    },
-    {
-      "id": 18,
-      "image2": "./img/tomato.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Tomato",
-      "relation": 9
-    },
-    {
-      "id": 19,
-      "image2": "./img/avocado.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Aguacate",
-      "relation": 10
-    }
-    ,
-    {
-      "id": 20,
-      "image2": "./img/avocado.png",
-      "image1": "./img/roma.jpg",
-      "status": true,
-      "title": "Aguacate",
-      "relation": 10
+      "name": "strawberry", 
+      "img": "img/strawberry.png"
     }
   ]
 }

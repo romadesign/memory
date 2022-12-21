@@ -1,14 +1,19 @@
 
-#content{
-  background-color: rgb(221, 221, 221) !important;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
-justify-content: initial;
-width: 320px;
-margin: 0 auto;
+.b-grid {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 600px;
 }
 
-#content img {
-  display: flex;
-  width: 100px;
+.b-grid img {
+	width: 25%;
+	margin: 10px auto;
+	border-radius: 10px;
+	background-color: aquamarine;
+}
+
+@media screen and (min-width: 500px) {
+	.b-grid img {
+			width: calc(25% - 20px);
+	}
 }
