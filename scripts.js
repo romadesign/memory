@@ -14,8 +14,7 @@ const getData = () =>
     .then(response => response.json())
     .then(json => {
       data = json.data
-      console.log(json.data)
-      for (let i = 0; i < 16; i++) {
+      for (let i = 0; i < data.length; i++) {
         let img = document.createElement("img");
         img.setAttribute("src", logo);
         selected_grid_div.appendChild(img);
