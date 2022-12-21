@@ -1,6 +1,6 @@
 const selected_grid_div = document.getElementById('grid')
 const time = document.getElementById('time')
-const logo = 'img/roma.jpg'
+const logo = 'img/logo.jpg'
 const attemp = document.getElementById('attempts')
 const content_div = document.querySelector('.content-time-general')
 const content_div_general = document.querySelector('.content-general')
