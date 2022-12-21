@@ -68,7 +68,7 @@ stop.onclick = function () {
 
 const getData = () =>
   start.getAttribute('class')
-start.classList.add('start_new')
+  start.classList.add('start_new')
 
 fetch('./data.json')
   .then(response => response.json())
