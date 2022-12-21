@@ -6,17 +6,16 @@ const attemp = document.getElementById('attempts')
 const content_div = document.querySelector('.content-time-general')
 const content_div_general = document.querySelector('.content-general')
 const buttonRestar = document.getElementById('buttonRestar')
+const h5 = document.getElementsByTagName('h5')[0]
+const start = document.getElementById('start')
+const stop = document.getElementById('stop')
 
 let new_array = []
 let attemps = 0
 let choices = []
 let save = []
 let data = ''
-let statusConente = false
-
-let h5 = document.getElementsByTagName('h5')[0]
-let start = document.getElementById('start')
-let stop = document.getElementById('stop')
+let clockStatus = false
 let sec = 0
 let min = 0
 let hrs = 0
@@ -49,7 +48,7 @@ function timer() {
   showButtonStop()
   hiddeButtonStart()
   buttonRestar.style.display = "none"
-  if (statusConente != true) {
+  if (clockStatus != true) {
     selected_grid_div.getAttribute('class')
     selected_grid_div.classList.remove('show-grip')
   }
@@ -61,11 +60,10 @@ stop.onclick = function () {
   showButtonStart()
   hiddeButtonStop()
 
-  if (statusConente != true) {
+  if (clockStatus != true) {
     selected_grid_div.getAttribute('class')
     selected_grid_div.classList.add('show-grip')
   }
-
   clearTimeout(t)
 }
 
@@ -79,7 +77,7 @@ fetch('./data.json')
     timer()
     data = json.data
     for (let i = 0; i < data.length; i++) {
-      let img = document.createElement('img')
+      const img = document.createElement('img')
       img.setAttribute('src', logo)
       selected_grid_div.appendChild(img)
       img.addEventListener('click', () => {
@@ -128,7 +126,7 @@ const onClick_img = (img, i) => {
   }
 
   if (save.length === 16) {
-    let imgHappy = document.createElement('img')
+    const imgHappy = document.createElement('img')
     imgHappy.setAttribute('src', happyImg)
     content_div_general.appendChild(imgHappy)
 
