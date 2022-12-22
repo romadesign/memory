@@ -27,8 +27,10 @@ let t
 //when the page loads the function is called startGame()
 window.onload = startGame
 
-function tick () {
+//adding seconds minutes hours && validation
+function tick() {
   sec++
+  console.log(sec)
   if (sec >= 60) {
     sec = 0
     min++
@@ -39,7 +41,8 @@ function tick () {
   }
 }
 
-function add () {
+//displaying the clock on the screen
+function showClock() {
   tick()
   h5.textContent =
     (hrs > 9 ? hrs : '0' + hrs) +
@@ -47,10 +50,12 @@ function add () {
     (min > 9 ? min : '0' + min) +
     ':' +
     (sec > 9 ? sec : '0' + sec)
-  timer()
+  runningClock()
 }
 
-function timer () {
+
+//Running the clock and hiding some divs and buttons
+function runningClock() {
   showButtonStop()
   hiddeButtonStart()
   buttonRestar.style.display = 'none'
@@ -58,10 +63,14 @@ function timer () {
     selected_grid_div.getAttribute('class')
     selected_grid_div.classList.remove('show-grip')
   }
-  t = setTimeout(add, 1000)
+  //Starting time
+  t = setTimeout(showClock, 1000)
 }
 
-start.onclick = timer
+//Button to continue the clock
+start.onclick = runningClock
+
+//button to stop the clock and hiding some divs
 stop.onclick = function () {
   showButtonStart()
   hiddeButtonStop()
@@ -70,51 +79,52 @@ stop.onclick = function () {
     selected_grid_div.getAttribute('class')
     selected_grid_div.classList.add('show-grip')
   }
+  //stopping clock
   clearTimeout(t)
 }
 
-//
-function startGame () {
+//request json data 
+function requestJsonData() {
+  fetch('./data.json')
+    .then(response => response.json())
+    .then(json => {
+      runningClock()
+      data = json.data
+
+      //looping through json to capture the position of each image and adding the click event to select the clicked image
+      data.map(function (item) {
+        //creating label to display on screen and capturing its attribute to add the image
+        const img = document.createElement('img')
+        img.setAttribute('src', logo)
+        selected_grid_div.appendChild(img)
+        //adding a function to each image and passing the position of each one as a parameter
+        img.addEventListener('click', _ => {
+          onClick_img(img, item.id - 1)
+        })
+      })
+
+      //validating the length of each array
+      while (new_array.length < data.length) {
+        //change the data from data to save it in another new array randomly
+        let random_number = Math.floor(Math.random() * data.length)
+        let exists = false
+        new_array.map(function (item) {
+          if (item == random_number) return exists = true
+        })
+        if (!exists) new_array[new_array.length] = random_number
+      }
+    })
+}
+
+function startGame() {
+  //showing countdown
   document.getElementById('countdown').innerHTML = totalTime
   if (totalTime == 0) {
     contentTimeGame.getAttribute('class')
     contentTimeGame.classList.remove('content-time-game')
     contentTimeGame.classList.add('time_new')
 
-    fetch('./data.json')
-      .then(response => response.json())
-      .then(json => {
-        timer()
-        data = json.data
-
-        //looping through json to capture the position of each image and adding the click event to select the clicked image
-        data.map(function (item) {
-          //creating label to display on screen and capturing its attribute to add the image
-          const img = document.createElement('img')
-          img.setAttribute('src', logo)
-          selected_grid_div.appendChild(img)
-          //adding a function to each image and passing the position of each one as a parameter
-          img.addEventListener('click', () => {
-            onClick_img(img, item.id - 1)
-          })
-        })
-        
-        //validating the length of each array
-        while (new_array.length < data.length) {
-          //change the data from data to save it in another new array randomly
-          let random_number = Math.floor(Math.random() * data.length)
-          let exists = false
-          for (var i = 0; i < new_array.length; i++) {
-            if (new_array[i] == random_number) {
-              exists = true
-              break
-            }
-          }
-          if (!exists) {
-            new_array[new_array.length] = random_number
-          }
-        }
-      })
+    requestJsonData()
   } else {
     totalTime -= 1
     //set timeout to show game
@@ -140,9 +150,10 @@ const onClick_img = (img, i) => {
     setTimeout(() => {
       const new_img_arr = Array.from(capture_img_all)
       const img_filter = new_img_arr.filter(img => !save.includes(img.id))
-      for (let i = 0; i < img_filter.length; i++) {
-        img_filter[i].setAttribute('src', logo)
-      }
+
+      //adding url of fruit images to your src attribute
+      img_filter.map(item => item.setAttribute('src', logo))
+
     }, 700)
     //adding attempts
     sum_attemp()
@@ -168,9 +179,7 @@ const onClick_img = (img, i) => {
       .classList.add('button-restart-game')
 
     //add click event to restart game
-    new_game_button.addEventListener('click', _ => {
-      location.reload()
-    })
+    new_game_button.addEventListener('click', () => location.reload())
     youWin()
   }
 }
@@ -181,8 +190,8 @@ const sum_attemp = () => {
   attemp.textContent = attemps
 }
 
-//Function to show button to restart or continue playing && stop the timer
-function youWin () {
+//Function to show button to restart or continue playing && stop the clock
+function youWin() {
   clearTimeout(t)
   selected_grid_div.getAttribute('class')
   selected_grid_div.classList.add('show-grip')
@@ -191,28 +200,26 @@ function youWin () {
 
 
 //////////function reusable show and hide bottons//////////
-function hiddeButtonStop () {
+function hiddeButtonStop() {
   stop.getAttribute('class')
   stop.classList.add('stop_new')
 }
 
-function showButtonStop () {
+function showButtonStop() {
   stop.getAttribute('class')
   stop.classList.remove('stop_new')
 }
 
-function hiddeButtonStart () {
+function hiddeButtonStart() {
   start.getAttribute('class')
   start.classList.add('start_new')
 }
 
-function showButtonStart () {
+function showButtonStart() {
   start.getAttribute('class')
   start.classList.remove('start_new')
   buttonRestar.style.display = 'block'
 
   //Star game again
-  buttonRestar.addEventListener('click', _ => {
-    location.reload()
-  })
+  buttonRestar.addEventListener('click', () => location.reload())
 }
