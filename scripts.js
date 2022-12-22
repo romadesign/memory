@@ -1,3 +1,4 @@
+//capture id &&  class 
 const selected_grid_div = document.getElementById('grid')
 const time = document.getElementById('time')
 const logo = 'img/logo.jpg'
@@ -14,7 +15,7 @@ const contentTimeGame = document.querySelector('.content-time-game')
 let totalTime = 3
 let new_array = []
 let attemps = 0
-let choices = []
+let img_selected = []
 let save = []
 let data = ''
 let clockStatus = false
@@ -23,7 +24,8 @@ let min = 0
 let hrs = 0
 let t
 
-window.onload = updateClock
+//when the page loads the function is called startGame()
+window.onload = startGame
 
 function tick () {
   sec++
@@ -71,10 +73,8 @@ stop.onclick = function () {
   clearTimeout(t)
 }
 
-const getData = () => start.getAttribute('class')
-start.classList.add('start_new')
-
-function updateClock () {
+//
+function startGame () {
   document.getElementById('countdown').innerHTML = totalTime
   if (totalTime == 0) {
     contentTimeGame.getAttribute('class')
@@ -87,15 +87,21 @@ function updateClock () {
         timer()
         data = json.data
 
-        for (let i = 0; i < data.length; i++) {
+        //looping through json to capture the position of each image and adding the click event to select the clicked image
+        data.map(function (item) {
+          //creating label to display on screen and capturing its attribute to add the image
           const img = document.createElement('img')
           img.setAttribute('src', logo)
           selected_grid_div.appendChild(img)
+          //adding a function to each image and passing the position of each one as a parameter
           img.addEventListener('click', () => {
-            onClick_img(img, i)
+            onClick_img(img, item.id - 1)
           })
-        }
+        })
+        
+        //validating the length of each array
         while (new_array.length < data.length) {
+          //change the data from data to save it in another new array randomly
           let random_number = Math.floor(Math.random() * data.length)
           let exists = false
           for (var i = 0; i < new_array.length; i++) {
@@ -109,26 +115,28 @@ function updateClock () {
           }
         }
       })
-
-    getData()
   } else {
     totalTime -= 1
-
-    setTimeout('updateClock()', 1000)
+    //set timeout to show game
+    setTimeout('startGame()', 1000)
   }
 }
 
+
+//capturando la etique elegida 
 const onClick_img = (img, i) => {
   const capture_img_all = document.querySelectorAll('img')
   img.setAttribute('src', data[new_array[i]].img)
   img.setAttribute('id', data[new_array[i]].id)
-  choices.push(img.src)
+  img_selected.push(img.src)
   save.push(img.id)
 
-  if (choices.length === 2 && choices[0] !== choices[1]) {
-    choices = []
+  //validating if the array has 2 items && validating if the position 0 and 1 are different and cleaning the array for a new selection of items
+  if (img_selected.length === 2 && img_selected[0] !== img_selected[1]) {
+    img_selected = []
     save.pop()
     save.pop()
+    //adding method to return the initial image if the selection is not correct and going through the array to add the logo
     setTimeout(() => {
       const new_img_arr = Array.from(capture_img_all)
       const img_filter = new_img_arr.filter(img => !save.includes(img.id))
@@ -136,23 +144,30 @@ const onClick_img = (img, i) => {
         img_filter[i].setAttribute('src', logo)
       }
     }, 700)
+    //adding attempts
     sum_attemp()
-  } else if (choices.length === 2 && choices[0] === choices[1]) {
-    choices = []
+    //validating if the 2 images are the same to clean and add attempts
+  } else if (img_selected.length === 2 && img_selected[0] === img_selected[1]) {
+    img_selected = []
     sum_attemp()
   }
 
+
+  //validation if we guess all the images
   if (save.length === 16) {
+    //add new tag html <img/>
     const imgHappy = document.createElement('img')
     imgHappy.setAttribute('src', happyImg)
     content_div_general.appendChild(imgHappy)
 
+    //add new tag html <button>
     const new_game_button = document.createElement('button')
     new_game_button.textContent = 'Play again'
     content_div_general
       .appendChild(new_game_button)
       .classList.add('button-restart-game')
 
+    //add click event to restart game
     new_game_button.addEventListener('click', _ => {
       location.reload()
     })
@@ -160,21 +175,22 @@ const onClick_img = (img, i) => {
   }
 }
 
+//function to add every time we click 2
 const sum_attemp = () => {
   attemps++
   attemp.textContent = attemps
 }
 
+//Function to show button to restart or continue playing && stop the timer
 function youWin () {
   clearTimeout(t)
-  content_div.getAttribute('class')
-  content_div.classList.add('time')
-  //hide game
   selected_grid_div.getAttribute('class')
   selected_grid_div.classList.add('show-grip')
   hiddeButtonStop()
 }
 
+
+//////////function reusable show and hide bottons//////////
 function hiddeButtonStop () {
   stop.getAttribute('class')
   stop.classList.add('stop_new')
@@ -194,6 +210,8 @@ function showButtonStart () {
   start.getAttribute('class')
   start.classList.remove('start_new')
   buttonRestar.style.display = 'block'
+
+  //Star game again
   buttonRestar.addEventListener('click', _ => {
     location.reload()
   })
